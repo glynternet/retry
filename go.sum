@@ -1,0 +1,6 @@
+github.com/palantir/pkg v1.1.0 h1:0EhrSUP8oeeh3MUvk7V/UU7WmsN1UiJNTvNj0sN9Cpo=
+github.com/palantir/pkg v1.1.0/go.mod h1:KC9srP/9ssWRxBxFCIqhUGC4Jt7OJkWRz0Iqehup1/c=
+github.com/palantir/pkg/retry v1.2.0 h1:akwDfYK4p3ghBrFRKHBRLcvowq9ISkfB3wACsweY0Ho=
+github.com/palantir/pkg/retry v1.2.0/go.mod h1:D55e+2WrAXKzhsLN9R5hp7/E6me6ToK1hM32r1dC4dE=
+github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
+github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
