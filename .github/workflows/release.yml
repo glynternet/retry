@@ -56,3 +56,6 @@ jobs:
           name: linux-arm64.snap
           path: /tmp/linux-arm64.snap
           if-no-files-found: error
+
+      - name: upload asset
+        uses: softprops/action-gh-release@v1
