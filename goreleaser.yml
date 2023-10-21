@@ -8,3 +8,46 @@ builds:
     goarch:
       - amd64
       - arm64
+
+nfpms:
+  - id: retry
+    package_name: retry
+    vendor: glynternet
+    homepage: https://github.com/glynternet/retry
+    maintainer: glynternet <1295698+glynternet@users.noreply.github.com>
+    description: &description |-
+      The command for retrying commands
+    license: MIT
+    formats:
+#      - apk
+      - deb
+#      - rpm
+#      - archlinux
+
+    # Packages it provides. (overridable)
+    #
+    # Since: v1.11
+#    provides:
+#      - bar
+
+    # Section.
+#    section: default
+
+    # Priority.
+#    priority: extra
+
+    # Makes a meta package - an empty package that contains only supporting
+    # files and dependencies.
+    # When set to `true`, the `builds` option is ignored.
+#    meta: true
+
+    # Changelog YAML file, see: https://github.com/goreleaser/chglog
+    #
+    # You can use goreleaser/chglog to create the changelog for your project,
+    # pass that changelog yaml file to GoReleaser,
+    # and it should in turn setup it accordingly for the given available
+    # formats (deb and rpm at the moment).
+    #
+    # Experimental.
+    # Since: v1.11
+#    changelog: ./foo.yml
