@@ -56,13 +56,14 @@ nfpms:
 # HOMEBREW
 # taken from https://observiq.com/blog/creating-homebrew-formulas-with-goreleaser
 brews:
-  - name: homebrew
+  - name: retry
     description: *description
     repository:
       owner: glynternet
       name: homebrew
       branch: main
-    download_strategy: CurlDownloadStrategy
+      token: "{{ .Env.GITHUB_TOKEN }}"
+#    download_strategy: CurlDownloadStrategy
     folder: Formula
     url_template: https://github.com/glynternet/homebrew/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_author:
