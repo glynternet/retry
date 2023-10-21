@@ -58,7 +58,7 @@ nfpms:
 brews:
   - name: homebrew
     description: *description
-    tap:
+    repository:
       owner: glynternet
       name: homebrew
       branch: main
