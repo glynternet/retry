@@ -27,3 +27,7 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
+      - uses: snapcore/action-build@v1
+        run: pwd
+      - uses: snapcore/action-build@v1
+        run: ls
