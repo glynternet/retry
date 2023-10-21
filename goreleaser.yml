@@ -15,7 +15,7 @@ nfpms:
     vendor: glynternet
     homepage: https://github.com/glynternet/retry
     maintainer: glynternet <1295698+glynternet@users.noreply.github.com>
-    description: |-
+    description: &description |-
       The command for retrying commands
     license: MIT
     formats:
@@ -51,3 +51,23 @@ nfpms:
     # Experimental.
     # Since: v1.11
 #    changelog: ./foo.yml
+
+
+# HOMEBREW
+# taken from https://observiq.com/blog/creating-homebrew-formulas-with-goreleaser
+brews:
+  - name: homebrew
+    description: *description
+    tap:
+      owner: glynternet
+      name: homebrew
+      branch: main
+    download_strategy: CurlDownloadStrategy
+    folder: Formula
+    url_template: https://github.com/glynternet/homebrew/releases/download/{{ .Tag }}/{{ .ArtifactName }}
+    commit_author:
+      name: glynternet
+      email: 1295698+glynternet@users.noreply.github.com
+    caveats: "Run 'retry --help' for usage instructions"
+    homepage: "https://github.com/glynternet/retry"
+    license: "MIT"
