@@ -63,7 +63,7 @@ brews:
       owner: glynternet
       name: homebrew-glynternet
       branch: main
-      token: "${{ secrets.PUBLISHER_TOKEN }}"
+      token: "{{ secrets.PUBLISHER_TOKEN }}"
 #    download_strategy: CurlDownloadStrategy
     folder: Formula
     url_template: https://github.com/glynternet/homebrew/releases/download/{{ .Tag }}/{{ .ArtifactName }}
