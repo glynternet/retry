@@ -23,7 +23,7 @@ func main() {
 	pflag.Parse()
 	cmd := pflag.Args()
 	if len(cmd) == 0 {
-		fmt.Println("error: no command provided")
+		pflag.Usage()
 		os.Exit(3)
 	}
 
