@@ -1,0 +1,15 @@
+name: retry
+title: retry
+version: $VERSION
+summary: The command for retrying commands
+description: The command for retrying commands
+base: base
+license: MIT
+grade: devel
+# use devmode for debugging
+confinement: strict
+architectures:
+  - $ARCH
+apps:
+  retry:
+    command: retry

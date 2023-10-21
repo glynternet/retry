@@ -21,13 +21,38 @@ jobs:
         with:
           go-version: stable
       - uses: goreleaser/goreleaser-action@v5
+        id: goreleaser
         with:
           distribution: goreleaser
           version: latest
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
-      - uses: snapcore/action-build@v1
-        run: pwd
-      - uses: snapcore/action-build@v1
-        run: ls
+      # extract version resolved by goreleaser
+      - run: echo "VERSION=${{ fromJSON(steps.goreleaser.outputs.metadata).version }}" >> "$GITHUB_ENV"
+
+      - run: sudo snap install --classic snapcraft
+
+      # AMD64
+      - run: mkdir -p /tmp/linux-amd64/prime/meta
+      - run: ARCH=amd64 envsubst <./snap.yml.tmpl > /tmp/linux-amd64/prime/meta/snap.yaml
+      # amd64 has _1 suffix on the binary
+      - run: cp -v ./dist/retry_linux_amd64_v1/retry /tmp/linux-amd64/prime/retry
+      - run: snapcraft pack /tmp/linux-amd64/prime --output /tmp/linux-amd64.snap
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-amd64.snap
+          path: /tmp/linux-amd64.snap
+          if-no-files-found: error
+
+      # ARM64
+      - run: mkdir -p /tmp/linux-arm64/prime/meta
+      - run: ARCH=arm64 envsubst <./snap.yml.tmpl > /tmp/linux-arm64/prime/meta/snap.yaml
+      # arm64 doesn't have the _1 suffix on the binary, unlike amd64
+      - run: cp -v ./dist/retry_linux_arm64/retry /tmp/linux-arm64/prime/retry
+      - run: snapcraft pack /tmp/linux-arm64/prime --output /tmp/linux-arm64.snap
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-arm64.snap
+          path: /tmp/linux-arm64.snap
+          if-no-files-found: error
