@@ -59,3 +59,7 @@ jobs:
 
       - name: upload asset
         uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            /tmp/linux-arm64.snap
+            /tmp/linux-amd64.snap
