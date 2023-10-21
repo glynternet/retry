@@ -54,8 +54,9 @@ nfpms:
 
 
 # HOMEBREW
-# follow instructions in https://askcloudarchitech.com/posts/tutorials/create-homebrew-tap-golang-goreleaser-cobra-cli/
-# taken from https://observiq.com/blog/creating-homebrew-formulas-with-goreleaser
+# follow instructions in:
+#  - https://askcloudarchitech.com/posts/tutorials/create-homebrew-tap-golang-goreleaser-cobra-cli/
+#  - https://observiq.com/blog/creating-homebrew-formulas-with-goreleaser
 brews:
   - name: retry
     description: *description
@@ -63,9 +64,7 @@ brews:
       owner: glynternet
       name: homebrew-glynternet
       branch: main
-#    download_strategy: CurlDownloadStrategy
     folder: Formula
-    url_template: https://github.com/glynternet/homebrew/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_author:
       name: glynternet
       email: 1295698+glynternet@users.noreply.github.com
