@@ -1,0 +1,10 @@
+builds:
+  - main: ./cmd/cli
+    id: "retry"
+    binary: retry
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
