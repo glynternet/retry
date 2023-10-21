@@ -81,7 +81,7 @@ snapcrafts:
     # icon: ./icon.png
 
     # Requires snapcraft login
-    publish: true
+#    publish: true
 
     # 79 char long at most.
     summary: *short_description
