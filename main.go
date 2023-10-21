@@ -10,6 +10,9 @@ import (
 	"time"
 )
 
+// set by goreleaser
+var version = "unknown"
+
 func main() {
 	// handle negative
 	maxAttempts := pflag.Uint("max-attempts", 0, "upper limit of number of attempts. 0 indicates no limit.")
@@ -19,8 +22,15 @@ func main() {
 	// handle <=0 values
 	multiplier := pflag.Float64("multiplier", 2, "multiplier to apply after each failed attempt.")
 	randomisation := pflag.Float64("randomisation", 0, "randomisation to apply to the multiplication of each backoff")
+	showVersion := pflag.BoolP("version", "v", false, "print the version ")
 
 	pflag.Parse()
+
+	if *showVersion {
+		fmt.Println(version)
+		os.Exit(0)
+	}
+
 	cmd := pflag.Args()
 	if len(cmd) == 0 {
 		pflag.Usage()
