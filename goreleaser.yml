@@ -1,5 +1,5 @@
 builds:
-  - main: ./cmd/cli
+  - main: .
     id: "retry"
     binary: retry
     goos:
