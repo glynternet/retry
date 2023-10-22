@@ -55,5 +55,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            /tmp/retry-${VERSION}-linux-arm64.snap
-            /tmp/retry-${VERSION}-linux-amd64.snap
+            /tmp/retry-${{env.VERSION}}-linux-arm64.snap
+            /tmp/retry-${{env.VERSION}}-linux-amd64.snap
