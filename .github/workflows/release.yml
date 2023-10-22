@@ -33,14 +33,18 @@ jobs:
 
       - run: sudo snap install --classic snapcraft
 
-      # AMD64
+      # SNAPS
+      # Creating snaps through goreleaser action isn't possible because snapcraft isn't installed,
+      # but it's simple enough to hand jam here, easier than creating a custom image with goreleaser and snapcraft installed.
+
+      ## amd64
       - run: mkdir -p /tmp/retry-${VERSION}-linux-amd64/prime/meta
       - run: ARCH=amd64 envsubst <./snap.yml.tmpl > /tmp/retry-${VERSION}-linux-amd64/prime/meta/snap.yaml
       # amd64 has _1 suffix on the binary
       - run: cp -v ./dist/retry_linux_amd64_v1/retry /tmp/retry-${VERSION}-linux-amd64/prime/retry
       - run: snapcraft pack /tmp/retry-${VERSION}-linux-amd64/prime --output /tmp/retry-${VERSION}-linux-amd64.snap
 
-      # ARM64
+      ## arm64
       - run: mkdir -p /tmp/retry-${VERSION}-linux-arm64/prime/meta
       - run: ARCH=arm64 envsubst <./snap.yml.tmpl > /tmp/retry-${VERSION}-linux-arm64/prime/meta/snap.yaml
       # arm64 doesn't have the _1 suffix on the binary, unlike amd64
