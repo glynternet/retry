@@ -38,22 +38,22 @@ jobs:
       # but it's simple enough to hand jam here, easier than creating a custom image with goreleaser and snapcraft installed.
 
       ## amd64
-      - run: mkdir -p /tmp/retry-${VERSION}-linux-amd64/prime/meta
-      - run: ARCH=amd64 envsubst <./snap.yml.tmpl > /tmp/retry-${VERSION}-linux-amd64/prime/meta/snap.yaml
+      - run: mkdir -p /tmp/retry_${VERSION}_linux_amd64/prime/meta
+      - run: ARCH=amd64 envsubst <./snap.yml.tmpl > /tmp/retry_${VERSION}_linux_amd64/prime/meta/snap.yaml
       # amd64 has _1 suffix on the binary
-      - run: cp -v ./dist/retry_linux_amd64_v1/retry /tmp/retry-${VERSION}-linux-amd64/prime/retry
-      - run: snapcraft pack /tmp/retry-${VERSION}-linux-amd64/prime --output /tmp/retry-${VERSION}-linux-amd64.snap
+      - run: cp -v ./dist/retry_linux_amd64_v1/retry /tmp/retry_${VERSION}_linux_amd64/prime/retry
+      - run: snapcraft pack /tmp/retry_${VERSION}_linux_amd64/prime --output /tmp/retry_${VERSION}_linux_amd64.snap
 
       ## arm64
-      - run: mkdir -p /tmp/retry-${VERSION}-linux-arm64/prime/meta
-      - run: ARCH=arm64 envsubst <./snap.yml.tmpl > /tmp/retry-${VERSION}-linux-arm64/prime/meta/snap.yaml
+      - run: mkdir -p /tmp/retry_${VERSION}_linux_arm64/prime/meta
+      - run: ARCH=arm64 envsubst <./snap.yml.tmpl > /tmp/retry_${VERSION}_linux_arm64/prime/meta/snap.yaml
       # arm64 doesn't have the _1 suffix on the binary, unlike amd64
-      - run: cp -v ./dist/retry_linux_arm64/retry /tmp/retry-${VERSION}-linux-arm64/prime/retry
-      - run: snapcraft pack /tmp/retry-${VERSION}-linux-arm64/prime --output /tmp/retry-${VERSION}-linux-arm64.snap
+      - run: cp -v ./dist/retry_linux_arm64/retry /tmp/retry_${VERSION}_linux_arm64/prime/retry
+      - run: snapcraft pack /tmp/retry_${VERSION}_linux_arm64/prime --output /tmp/retry_${VERSION}_linux_arm64.snap
 
       - name: upload snaps to release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            /tmp/retry-${VERSION}-linux-arm64.snap
-            /tmp/retry-${VERSION}-linux-amd64.snap
+            /tmp/retry_${{env.VERSION}}_linux_arm64.snap
+            /tmp/retry_${{env.VERSION}}_linux_amd64.snap
