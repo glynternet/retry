@@ -7,7 +7,8 @@ base: core22
 license: MIT
 grade: devel
 # use devmode for debugging
-confinement: strict
+# classic required to access commands outside of the snap
+confinement: classic
 architectures:
   - $ARCH
 apps:
