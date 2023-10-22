@@ -57,3 +57,14 @@ jobs:
           files: |
             /tmp/retry_${{env.VERSION}}_linux_arm64.snap
             /tmp/retry_${{env.VERSION}}_linux_amd64.snap
+      - &snap_publish
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPSTORE_LOGIN }}
+        with:
+          snap: /tmp/retry_${{env.VERSION}}_linux_arm64.snap
+          release: edge
+      - <<: *snap_publish
+        with:
+          snap: /tmp/retry_${{env.VERSION}}_linux_amd64.snap
+          release: edge
