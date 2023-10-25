@@ -8,6 +8,8 @@ builds:
     goarch:
       - amd64
       - arm64
+    env:
+      - CGO_ENABLED=0
 
 nfpms:
   - id: retry
@@ -19,9 +21,9 @@ nfpms:
       The command for retrying commands
     license: MIT
     formats:
-#      - apk
+      - apk
       - deb
-#      - rpm
+      - rpm
 #      - archlinux
 
     # Packages it provides. (overridable)
