@@ -3,11 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/palantir/pkg/retry"
-	"github.com/spf13/pflag"
 	"os"
 	"os/exec"
+	"syscall"
 	"time"
+
+	"github.com/palantir/pkg/retry"
+	"github.com/spf13/pflag"
 )
 
 // set by goreleaser
@@ -37,9 +39,19 @@ func main() {
 		os.Exit(3)
 	}
 
+	getpgid, err := syscall.Getpgid(os.Getpid())
+	if err != nil {
+		fmt.Println("error getting pgid of retry:", err.Error())
+		os.Exit(4)
+	}
+
 	var lastExitCode int
-	err := retry.Do(context.Background(), func() error {
+	err = retry.Do(context.Background(), func() error {
 		cmd2 := exec.Command(cmd[0], cmd[1:]...)
+		cmd2.SysProcAttr = &syscall.SysProcAttr{
+			Setpgid: true,
+			Pgid:    getpgid,
+		}
 		cmd2.Stdout = os.Stdout
 		cmd2.Stderr = os.Stderr
 		// confirm how exit code handling works
